@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <!-- Header with title and controls -->
+            <div class="calculator-header">
+                <h1 class="calculator-title">
+                    <i class="fas fa-calculator"></i>
+                    Calculator
+                </h1>
+                <div class="header-controls">
+                    <button class="mode-toggle" id="modeToggle">
+                        <i class="fas fa-flask"></i>
+                        <span>Sci</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Display Screen -->
+            <div class="display-container">
+                <div class="display" id="display">
+                    <div class="previous-operand" id="previousOperand"></div>
+                    <div class="current-operand" id="currentOperand">0</div>
+                </div>
+            </div>
+
+            <!-- Calculator Buttons -->
+            <div class="buttons-grid">
+                <!-- Row 1 -->
+                <button class="btn btn-function" data-action="clear">
+                    <i class="fas fa-eraser"></i>
+                    <span>AC</span>
+                </button>
+                <button class="btn btn-function" data-action="delete">
+                    <i class="fas fa-backspace"></i>
+                    <span>DEL</span>
+                </button>
+                <button class="btn btn-function" data-action="percentage">
+                    <i class="fas fa-percentage"></i>
+                    <span>%</span>
+                </button>
+                <button class="btn btn-operator" data-action="divide">
+                    <i class="fas fa-divide"></i>
+                    <span>÷</span>
+                </button>
+
+                <!-- Row 2 -->
+                <button class="btn btn-number" data-number="7">7</button>
+                <button class="btn btn-number" data-number="8">8</button>
+                <button class="btn btn-number" data-number="9">9</button>
+                <button class="btn btn-operator" data-action="multiply">
+                    <i class="fas fa-times"></i>
+                    <span>×</span>
+                </button>
+
+                <!-- Row 3 -->
+                <button class="btn btn-number" data-number="4">4</button>
+                <button class="btn btn-number" data-number="5">5</button>
+                <button class="btn btn-number" data-number="6">6</button>
+                <button class="btn btn-operator" data-action="subtract">
+                    <i class="fas fa-minus"></i>
+                    <span>−</span>
+                </button>
+
+                <!-- Row 4 -->
+                <button class="btn btn-number" data-number="1">1</button>
+                <button class="btn btn-number" data-number="2">2</button>
+                <button class="btn btn-number" data-number="3">3</button>
+                <button class="btn btn-operator" data-action="add">
+                    <i class="fas fa-plus"></i>
+                    <span>+</span>
+                </button>
+
+                <!-- Row 5 -->
+                <button class="btn btn-number btn-zero" data-number="0">0</button>
+                <button class="btn btn-number" data-number=".">.</button>
+                <button class="btn btn-equals" data-action="equals">
+                    <i class="fas fa-equals"></i>
+                    <span>=</span>
+                </button>
+            </div>
+
+            <!-- Additional Functions -->
+            <div class="additional-functions">
+                <button class="btn btn-function btn-small" data-action="square">
+                    <i class="fas fa-superscript"></i>
+                    <span>x²</span>
+                </button>
+                <button class="btn btn-function btn-small" data-action="square-root">
+                    <i class="fas fa-square-root-alt"></i>
+                    <span>√</span>
+                </button>
+                <button class="btn btn-function btn-small" data-action="inverse">
+                    <i class="fas fa-fraction"></i>
+                    <span>1/x</span>
+                </button>
+                <button class="btn btn-function btn-small" data-action="negate">
+                    <i class="fas fa-plus-minus"></i>
+                    <span>±</span>
+                </button>
+            </div>
+
+            <!-- Scientific Functions -->
+            <div class="scientific-functions" id="scientificFunctions" style="display: none;">
+                <!-- Row 1: Trigonometry -->
+                <div class="scientific-row">
+                    <button class="btn btn-function btn-small" data-action="sin">
+                        <span>sin</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="cos">
+                        <span>cos</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="tan">
+                        <span>tan</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="log">
+                        <span>log</span>
+                    </button>
+                </div>
+                
+                <!-- Row 2: Advanced Functions -->
+                <div class="scientific-row">
+                    <button class="btn btn-function btn-small" data-action="ln">
+                        <span>ln</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="exp">
+                        <span>e^x</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="power">
+                        <span>x^y</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="factorial">
+                        <span>n!</span>
+                    </button>
+                </div>
+                
+                <!-- Row 3: Constants and Memory -->
+                <div class="scientific-row">
+                    <button class="btn btn-function btn-small" data-action="pi">
+                        <span>π</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="e">
+                        <span>e</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="memory-clear">
+                        <span>MC</span>
+                    </button>
+                    <button class="btn btn-function btn-small" data-action="memory-recall">
+                        <span>MR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating particles for visual effect -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Colorful bubble animation -->
+        <div class="bubbles-container">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="bubble bubble-5"></div>
+            <div class="bubble bubble-6"></div>
+            <div class="bubble bubble-7"></div>
+            <div class="bubble bubble-8"></div>
+            <div class="bubble bubble-9"></div>
+            <div class="bubble bubble-10"></div>
+            <div class="bubble bubble-11"></div>
+            <div class="bubble bubble-12"></div>
+            <div class="bubble bubble-13"></div>
+            <div class="bubble bubble-14"></div>
+            <div class="bubble bubble-15"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
